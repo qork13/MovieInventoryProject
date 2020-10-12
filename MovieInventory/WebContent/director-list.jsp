@@ -5,19 +5,21 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>List of Directors</title>
+<title>Directors</title>
 </head>
 <body>
+<h1>Add a director</h1>
 <form action = "addDirectorServlet" method="post">
 	Director Name:<input type="text" name="directorName">
 	<input type="submit" value="Add Director">
 </form>
 
+<h1>List of all directors</h1>
 <table>
 	<c:forEach items="${requestScope.allDirectors }" var="currentdirector">
 		<tr>
 		<td><input type="radio" name="id" value="${currentdirector.id }"></td>
-		<td>Title: ${currentdirector.name }</td>
+		<td>Name: ${currentdirector.name }</td>
 		</tr>
 	</c:forEach>
 </table>

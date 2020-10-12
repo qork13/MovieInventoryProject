@@ -5,10 +5,23 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>List of Movies</title>
+<title>Movies</title>
 </head>
 <body>
+<h1>Add a movie</h1>
+<form action = "addMovieServlet" method="post">
+	Movie Title:<input type="text" name="title"><br>
+	Date Released:<input type="text" name="year" placeholder="yyyy" size="4"><input type="text" name="month" placeholder="mm" size="4"><input type="text" name="day" placeholder="dd" size="4"><br>
+	Director:
+	<select name="directorToAdd">
+	<c:forEach items="${requestScope.allDirectors }" var="currentdirector">
+	<option value="${currentdirector.id }">${currentdirector.name }</option>
+	</c:forEach>
+	</select>
+	<br><input type="submit" value="Add Movie">
+</form>
 
+<h1>List of all movies</h1>
 <table>
 	<c:forEach items="${requestScope.allMovies }" var="currentmovie">
 		<tr>

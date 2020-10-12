@@ -24,4 +24,12 @@ public class DirectorHelper {
 		List<Director> allDirectors = em.createQuery("SELECT d FROM Director d").getResultList();
 		return allDirectors;
 	}
+	
+	public Director searchForDirectorById(int id) {
+		EntityManager em = emfactory.createEntityManager();
+		em.getTransaction().begin();
+		Director found = em.find(Director.class, id);
+		em.close();
+		return found;
+	}
 }

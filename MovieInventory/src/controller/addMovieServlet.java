@@ -1,23 +1,27 @@
 package controller;
 
 import java.io.IOException;
+import java.time.LocalDate;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.Movie;
+
 /**
- * Servlet implementation class viewAllMoviesServlet
+ * Servlet implementation class addMovieServlet
  */
-@WebServlet("/viewAllMoviesServlet")
-public class viewAllMoviesServlet extends HttpServlet {
+@WebServlet("/addMovieServlet")
+public class addMovieServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public viewAllMoviesServlet() {
+    public addMovieServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,14 +32,21 @@ public class viewAllMoviesServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		MovieHelper mh = new MovieHelper();
 		DirectorHelper dh = new DirectorHelper();
-		request.setAttribute("allMovies", mh.showAllMovies());
-		request.setAttribute("allDirectors", dh.showAllDirectors());
-		String path = "/movie-list.jsp";
 		
-		if(mh.showAllMovies().isEmpty()) {
-			path="/index.html";
-		}
-		getServletContext().getRequestDispatcher(path).forward(request, response);
+		String title = request.getParameter("title");
+		String year = request.getParameter("year");
+		String month = request.getParameter("month");
+		String day = request.getParameter("day");
+		LocalDate ld;
+		ld = LocalDate.of(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day));
+		
+		
+		String directorToAdd = request.getParameter("directorToAdd");
+		int directorId = Integer.parseInt(directorToAdd);
+		
+		Movie movieToAdd = new Movie(title, ld, dh.searchForDirectorById(directorId));
+		mh.insertMovie(movieToAdd);
+		getServletContext().getRequestDispatcher("/viewAllMoviesServlet").forward(request, response);
 	}
 
 	/**
