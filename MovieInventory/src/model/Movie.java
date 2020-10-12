@@ -78,6 +78,6 @@ public class Movie {
 	
 	@Override
 	public String toString() {
-		return "Movie [id=" + id + ", title=" + title + ", dateReleased=" + dateReleased + "]";
+		return "Movie [id=" + id + ", title=" + title + ", dateReleased=" + dateReleased + "director=" + director.getName() + "]";
 	}
 }
