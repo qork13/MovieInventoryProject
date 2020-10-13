@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,7 +24,7 @@ public class Movie {
 	private String title;
 	@Column(name="DATE_RELEASED")
 	private LocalDate dateReleased;
-	@ManyToOne (cascade=CascadeType.PERSIST)
+	@ManyToOne (cascade=CascadeType.MERGE, fetch=FetchType.EAGER)
 	@JoinColumn(name="DIRECTOR_ID")
 	private Director director;
 	
@@ -31,8 +32,9 @@ public class Movie {
 		super();
 	}
 	
-	public Movie(String title, LocalDate dateReleased) {
+	public Movie(int id, String title, LocalDate dateReleased) {
 		super();
+		this.id = id;
 		this.title = title;
 		this.dateReleased = dateReleased;
 	}
