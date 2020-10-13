@@ -8,6 +8,7 @@
 </head>
 <body>
 <form action = "editMovieServlet" method="post">
+	<input type ="hidden" name ="id"value="${movieToEdit.id}">
 	Movie Title:<input type="text" name="title" value="${movieToEdit.title}"><br>
 	Date Released:<input type="text" name="year" placeholder="yyyy" size="4" value="${year}"><input type="text" name="month" placeholder="mm" size="4"value="${month}" ><input type="text" name="day" placeholder="dd" size="4" value="${date}" ><br>
 	Director:
