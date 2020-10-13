@@ -23,6 +23,9 @@
 		</tr>
 	</c:forEach>
 </table>
+<!-- Buttons to edit, delete, and add new pet -->
+<input type ="submit" value ="Edit" name="doThisToDirector">
+<input type ="submit" value ="Delete" name="doThisToDirector">
 
 </body>
 </html>
