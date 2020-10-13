@@ -21,6 +21,7 @@
 	<br><input type="submit" value="Add Movie">
 </form>
 
+<form> action = movieNavigationServlet method = "post"
 <h1>List of all movies</h1>
 <table>
 	<c:forEach items="${requestScope.allMovies }" var="currentmovie">
@@ -32,5 +33,9 @@
 		</tr>
 	</c:forEach>
 </table>
+<!-- Buttons to edit and delete director -->
+<input type ="submit" value ="edit" name="doThisToMovie">
+<!-- <input type ="submit" value ="delete" name="doThisToDirector"><br/>-->
+</form>
 </body>
 </html>

@@ -14,6 +14,7 @@
 	<input type="submit" value="Add Director">
 </form>
 
+<form action = "directorNavigationServlet" method = "post">
 <h1>List of all directors</h1>
 <table>
 	<c:forEach items="${requestScope.allDirectors }" var="currentdirector">
@@ -23,9 +24,10 @@
 		</tr>
 	</c:forEach>
 </table>
-<!-- Buttons to edit, delete, and add new pet -->
-<input type ="submit" value ="Edit" name="doThisToDirector">
-<input type ="submit" value ="Delete" name="doThisToDirector">
-
+<!-- Buttons to edit, delete, and add new director -->
+<input type ="submit" value ="edit" name="doThisToDirector">
+<!-- <input type ="submit" value ="delete" name="doThisToDirector"><br/>-->
+<a href="viewAllMoviesServlet">View all movies</a><br/>
+</form>
 </body>
 </html>
