@@ -46,7 +46,7 @@ public class editMovieServlet extends HttpServlet {
 		ld = LocalDate.of(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day));
 		
 		
-		String directorToEdit = request.getParameter("directorToEdit");
+		String directorToEdit = request.getParameter("directorsToEdit");
 		int directorId = Integer.parseInt(directorToEdit);
 		Director director = dh.searchForDirectorById(directorId);
 		
@@ -55,7 +55,7 @@ public class editMovieServlet extends HttpServlet {
 		movieToUpdate.setDateReleased(ld);
 		movieToUpdate.setDirector(director);
 		mh.updateMovie(movieToUpdate);
-		dh.updateDirector(director);
+		
 		
 		getServletContext().getRequestDispatcher("/viewAllMoviesServlet").forward(request, response);
 		
