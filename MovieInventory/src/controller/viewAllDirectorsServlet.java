@@ -7,19 +7,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.Director;
-
 /**
- * Servlet implementation class addDirectorServlet
+ * Servlet implementation class viewAllDirectorsServlet
  */
-@WebServlet("/addDirectorServlet")
-public class addDirectorServlet extends HttpServlet {
+@WebServlet("/viewAllDirectorsServlet")
+public class viewAllDirectorsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public addDirectorServlet() {
+    public viewAllDirectorsServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,19 +26,22 @@ public class addDirectorServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		DirectorHelper dh = new DirectorHelper();
+		request.setAttribute("allDirectors", dh.showAllDirectors());
+		String path = "/director-list.jsp";
+		
+		if(dh.showAllDirectors().isEmpty()) {
+			path="/index.html";
+		}
+		getServletContext().getRequestDispatcher(path).forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String name = request.getParameter("directorName");
-		Director director = new Director(name);
-		DirectorHelper dh = new DirectorHelper();
-		dh.insertDirector(director);
-		getServletContext().getRequestDispatcher("/viewAllDirectorsServlet").forward(request, response);
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }
